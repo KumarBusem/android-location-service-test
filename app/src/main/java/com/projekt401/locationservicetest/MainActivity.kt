@@ -51,17 +51,25 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        val input: String = "El servicio espera informacion"
+        val input: String = "Has iniciado sesion"
         val serviceIntent = Intent(this, ExampleService::class.java)
         serviceIntent.putExtra("inputExtra", input)
 
         button_start.setOnClickListener {
+
+            // Aqui se activa el servicio
+            // Aqui se le deberia pasar la ubicacion y que se mantenga en ejecucion (background)
+
             startService(serviceIntent)
             Toast.makeText(this, "El servicio ha iniciado", Toast.LENGTH_SHORT).show()
         }
 
 
         button_stop.setOnClickListener {
+
+            // Este seria el switch para apagar el servicio (Cuando el conductor ya finaliza sesion)
+            // O manualmente desactiva el servicio de recibir viajes
+
             stopService(serviceIntent)
             Toast.makeText(this, "El servicio se ha detenido", Toast.LENGTH_SHORT).show()
         }
@@ -215,8 +223,8 @@ class MainActivity : AppCompatActivity() {
     // Codigo del Servicio
 
 
-    fun startService(v: View?) {
-        val input: String = "El servicio espera informacion"
+    fun startService(v: View?, input: String) {
+        val input = input
         val serviceIntent = Intent(this, ExampleService::class.java)
         serviceIntent.putExtra("inputExtra", input)
         ContextCompat.startForegroundService(this, serviceIntent)

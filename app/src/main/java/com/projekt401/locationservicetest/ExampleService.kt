@@ -31,9 +31,9 @@ class ExampleService : Service() {
             0, notificationIntent, 0
         )
         val notification: Notification = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("Example Service")
+            .setContentTitle("RideApp")
             .setContentText(input)
-            .setSmallIcon(R.drawable.ic_menu_call)
+            .setSmallIcon(R.drawable.ic_dialog_map)
             .setContentIntent(pendingIntent)
             .build()
 
@@ -46,7 +46,7 @@ class ExampleService : Service() {
         // START_REDELIVER_INTENT = El servicio inicia y reinicia y se vuelve a pasar el ultimo intent
 
 
-        return START_NOT_STICKY
+        return START_STICKY
     }
 
     override fun onDestroy() {
